@@ -1,0 +1,9 @@
+<h1>Neuer Chat</h1>
+<%= form_tag conversation_index_path, method: :post do %>
+	<%= hidden_field_tag "user_id", @current_user.id %>
+	<%= label_tag "partner_id", "Kontakt" %>
+	<%= select_tag "partner_id", options_from_collection_for_select(User.all.order(:nick_name), "id", "nick_name"), prompt: "Bitte auswählen" %><br /><br />
+	<%= label_tag "content", "Nachricht" %><br />
+	<%= text_field_tag "content" %><br /><br />
+	<%= submit_tag "Senden" %>
+<% end %>

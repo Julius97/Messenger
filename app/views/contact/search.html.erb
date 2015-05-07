@@ -1,0 +1,26 @@
+<h1>Kontaktsuche</h1>
+<%= form_tag search_path, method: :post do %>
+	<%= label_tag "search_method", "Suchen nach" %>
+	<select name="search_method">
+		<option value="mail_address">E-Mail</option>
+		<option value="nick_name">Nickname</option>
+	</select>
+	<br /><br />
+	<%= label_tag "search_input", "Sucheingabe" %><br />
+	<%= text_field_tag "search_input" %><br /><br />
+	<%= submit_tag "Suchen" %>
+<% end %>
+<p>
+	<% if @search_output %>
+		Gefundener Nutzer: <br />
+		<%= @search_output.nick_name + " (" + @search_output.mail_address + ")" %> 
+		<%= form_tag contact_index_path, method: :post do %>
+			<%= hidden_field_tag "contact_id", @search_output.id %>
+			<%= submit_tag "Kontakt hinzufügen" %>
+		<% end %>
+	<% else %>
+		<% if params[:search_method] %>
+			Keinen Nutzer, der den Angaben entspricht, gefunden!
+		<% end %>
+	<% end %>
+</p>

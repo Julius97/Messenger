@@ -1,0 +1,16 @@
+<h1><%= User.find_by_id(@partner_id).nick_name  %></h1>
+<% @messages.each do |message| %>
+	<p>
+		<%= message.user_id == @current_user.id ? "Ich: " : User.find_by_id(@partner_id).nick_name + ": " %><%= message.content %>
+		<%= message.updated_at.strftime("%H:%M") %>
+		<%= message.read ? "(gelesen)" : "(ungelesen)" if message.user_id == @current_user.id %>
+	</p>
+<% end %>
+<p>
+	<%= form_tag message_index_path, method: :post do %>
+		<%= hidden_field_tag "user_id", @current_user.id %>
+		<%= hidden_field_tag "conversation_id", @conversation.id %>
+		<%= text_field_tag "content" %>
+		<%= submit_tag "Senden" %>
+	<% end %>
+</p>

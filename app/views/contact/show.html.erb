@@ -1,0 +1,10 @@
+<h1><%= @user.nick_name %></h1>
+<p>
+	E-Mail: <%= @user.mail_address %><br />
+	Hinzugefügt am: <%= @contact.created_at.strftime("%d.%m.%Y") %><br />
+	Gemeinsame Konversation: <%= @contact.conversation ? "Ja" : "Nein" %><br />
+	Ausgetauschte Nachrichten: <%= @contact.conversation.messages.count.to_s if @contact.conversation %> <%= "keine" if !@contact.conversation %>
+</p>
+<p>
+	<%= link_to "Zur Konversation", conversation_path(@contact.conversation.id) if @contact.conversation %>
+</p>

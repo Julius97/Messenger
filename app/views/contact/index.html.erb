@@ -1,0 +1,14 @@
+<h1>Kontaktliste</h1>
+<p>
+	<%= link_to "Kontaktsuche", search_path %>
+</p>
+<p>
+	<% @contacts.each do |contact| %>
+		<% if contact.user_one.id != @current_user.id %>
+			<%= link_to contact.user_one.nick_name, contact_path(contact.id)  %>
+		<% else %>
+			<%= link_to contact.user_two.nick_name, contact_path(contact.id) %>
+		<% end %>
+		<br />
+	<% end %>
+</p>

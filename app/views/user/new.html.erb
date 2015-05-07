@@ -1,0 +1,17 @@
+<h1>Registrierung</h1>
+<%= form_tag register_path, method: :post do %>
+	<%= label_tag "nick_name", "Nickname" %><br />
+	<%= text_field_tag "nick_name" %><br /><br />
+	<%= label_tag "mail", "Mailadresse" %><br />
+	<%= text_field_tag "mail" %><br /><br />
+	<%= label_tag "repeated_mail", "Mailadresse wiederholen" %><br />
+	<%= text_field_tag "repeated_mail" %><br /><br />
+	<%= label_tag "password", "Passwort" %><br />
+	<%= password_field_tag "password" %><br /><br />
+	<%= label_tag "repeated_password", "Passwort wiederholen" %><br />
+	<%= password_field_tag "repeated_password" %><br /><br />
+	<%= submit_tag "Registrieren" %>
+<% end %>
+<p>
+	<%= link_to "Login", login_path %>
+</p>

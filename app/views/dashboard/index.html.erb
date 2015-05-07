@@ -1,0 +1,20 @@
+<h1>Dashboard</h1>
+<p>
+	<%= link_to "Neuer Chat", new_conversation_path %>
+	<%= link_to "Kontakte", contact_index_path %>
+</p>
+<% @conversations.each do |conversation| %>
+	<a href="/conversation/<%= conversation.id %>">
+		<p>
+			<% if conversation.contact.user_one_id == @current_user.id %>
+				<h3><%= conversation.contact.user_two.nick_name %></h3>
+			<% else %>
+				<h3><%= conversation.contact.user_one.nick_name %></h3>
+			<% end %>
+			<%= "(" + time_ago_in_words(conversation.messages.last.updated_at) + ")" %><br />
+			<%= conversation.messages.last.content %>
+			<%= "(" + conversation.messages.where("read = 'f' AND user_id != ?", @current_user.id).count.to_s + ")" if conversation.messages.where("read = 'f' AND user_id != ?", @current_user.id).count > 0 %>
+		</p>
+		<hr />
+	</a>
+<% end %>
