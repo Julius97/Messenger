@@ -7,17 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
-<% if !@current_user.nil? %>
-	<p>
-		<%= link_to "Chats", dashboard_index_path %>
-	</p>
-	<p>
-		<%= link_to "Logout", logout_path %>
-	</p>
-<% end %>
-
+	<section id="main_wrapper">
+		<%= yield %>
+	</section>
+	<footer id="footer_menue">
+		<ul>
+			<% if !@current_user.nil? %>
+				<li><%= link_to "Chats", dashboard_index_path %></li>
+				<li><%= link_to "Kontakte", contact_index_path %></li>
+				<li><%= link_to "Logout", logout_path %></li>
+			<% end %>
+		</ul>
+	</footer>
 </body>
 </html>
