@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
 	has_many :contacts
 	has_many :messages
+	has_one :status
 
 	attr_accessor :password
 	before_create :encrypt_password

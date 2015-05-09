@@ -15,6 +15,11 @@ class ConversationController < ApplicationController
 			else
 				@partner_id = @conversation.contact.user_one_id
 			end
+			if Contact.where("user_one_id = ? AND user_two_id = ?", @current_user.id, @partner_id).count > 0
+				@contact_id = Contact.where("user_one_id = ? AND user_two_id = ?", @current_user.id, @partner_id).first.id
+			else
+				@contact_id = Contact.where("user_one_id = ? AND user_two_id = ?", @partner_id, @current_user.id).first.id
+			end
 			@messages.where(:user_id => @partner_id, :read => false).each do |message|
 				message.update_attributes :read => true
 			end

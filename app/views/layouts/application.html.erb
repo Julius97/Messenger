@@ -18,7 +18,7 @@
 			<% if !@current_user.nil? %>
 				<li><%= link_to "Kontakte", contact_index_path %></li>
 				<li><%= link_to "Chats", dashboard_index_path %></li>
-				<li><%= link_to "Einstellungen", "#" %></li>
+				<li><%= link_to "Status", status_path(@current_user.status.id) %></li>
 				<li><%= link_to "Logout", logout_path %></li>
 			<% end %>
 		</ul>

@@ -10,10 +10,14 @@ class ContactController < ApplicationController
 		if params[:id]
 			if Contact.find_by_id params[:id]
 				@contact = Contact.find_by_id params[:id]
-				if @contact.user_one_id != @current_user.id
-					@user = @contact.user_one
+				if @contact.user_one_id == @current_user.id || @contact.user_two_id == @current_user.id
+					if @contact.user_one_id != @current_user.id
+						@user = @contact.user_one
+					else
+						@user = @contact.user_two
+					end
 				else
-					@user = @contact.user_two
+					redirect_to contact_index_path
 				end
 			else
 				redirect_to contact_index_path

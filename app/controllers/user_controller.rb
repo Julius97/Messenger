@@ -19,7 +19,8 @@ class UserController < ApplicationController
 				    	if params[:password] == params[:repeated_password]
 				    		if !User.find_by_mail_address params[:mail] && !User.find_by_nick_name params[:nick_name]
 				    			if User.where(:nick_name => params[:nick_name]).count == 0
-									User.create :password => params[:password], :nick_name => params[:nick_name], :admin_permissions => false, :mail_address => params[:mail]
+									user = User.create :password => params[:password], :nick_name => params[:nick_name], :admin_permissions => false, :mail_address => params[:mail]
+									Status.create :content => "Verfügbar", :user_id => user.id
 									successful_registration = true
 								end
 							end

@@ -1,4 +1,4 @@
-<h1><%= User.find_by_id(@partner_id).nick_name  %></h1>
+<h1><%= link_to User.find_by_id(@partner_id).nick_name, contact_path(@contact_id)  %></h1>
 <div id="in_conversation_messages_wrapper">
 	<% @messages.each do |message| %>
 		<% message.user_id == @current_user.id ? message_class = "my_message" : message_class = "partners_message" %>

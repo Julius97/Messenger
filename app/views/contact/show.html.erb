@@ -6,5 +6,8 @@
 	Ausgetauschte Nachrichten: <%= @contact.conversation.messages.count.to_s if @contact.conversation %> <%= "keine" if !@contact.conversation %>
 </p>
 <p>
+	Status: <%= @user.status.content %>
+</p>
+<p>
 	<%= link_to "Zur Konversation", conversation_path(@contact.conversation.id) if @contact.conversation %>
 </p>

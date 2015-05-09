@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   #MESSAGE ROUTES
   resources :message
 
+  #STATUS ROUTES
+  resources :status
+
   #SESSION ROUTES
   resources :session
   get "login", to: "session#index", :as => "login"
