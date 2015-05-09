@@ -1,16 +1,21 @@
 <h1><%= User.find_by_id(@partner_id).nick_name  %></h1>
-<% @messages.each do |message| %>
-	<p>
-		<%= message.user_id == @current_user.id ? "Ich: " : User.find_by_id(@partner_id).nick_name + ": " %><%= message.content %>
-		<%= message.updated_at.strftime("%H:%M") %>
-		<%= message.read ? "(gelesen)" : "(ungelesen)" if message.user_id == @current_user.id %>
-	</p>
-<% end %>
-<p>
+<div id="in_conversation_messages_wrapper">
+	<% @messages.each do |message| %>
+		<% message.user_id == @current_user.id ? message_class = "my_message" : message_class = "partners_message" %>
+		<p class=<%= message_class %>>
+			<%= message.content %><br />
+			<span class="meta_data_of_message">
+				<%= message.updated_at.strftime("%H:%M") %>
+				<%= message.read ? "(gelesen)" : "(ungelesen)" if message.user_id == @current_user.id %>
+			</span>
+		</p>
+	<% end %>
+</div>
+<div id="new_message_form_wrapper">
 	<%= form_tag message_index_path, method: :post do %>
 		<%= hidden_field_tag "user_id", @current_user.id %>
 		<%= hidden_field_tag "conversation_id", @conversation.id %>
-		<%= text_field_tag "content" %>
+		<%= text_area_tag "content" %>
 		<%= submit_tag "Senden" %>
 	<% end %>
-</p>
+</div>
