@@ -1,0 +1,6 @@
+<h1>Status bearbeiten</h1>
+<%= form_tag status_path, method: :put do %>
+	<%= label_tag "content", "Ihr Status" %><br />
+	<%= text_area_tag "content", @status.content, :rows => 5, :cols => 80 %><br /><br />
+	<%= submit_tag "Bearbeiten" %>
+<% end %>

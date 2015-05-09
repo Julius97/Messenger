@@ -1,0 +1,6 @@
+<h1>Status</h1>
+<p>
+	<b>Ihr aktueller Status:</b> <%= @status.content %><br />
+	<b>Eingestellt seit:</b> <%= time_ago_in_words(@status.updated_at) %><br />
+	<%= link_to "Bearbeiten", edit_status_path(@status.id) %>
+</p>
