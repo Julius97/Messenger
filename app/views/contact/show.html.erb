@@ -11,3 +11,6 @@
 <p>
 	<%= link_to "Zur Konversation", conversation_path(@contact.conversation.id) if @contact.conversation %>
 </p>
+<p>
+	<%= link_to "Kontakt löschen", contact_path(@contact.id), method: :delete, data: { confirm: "Wirklich löschen?" }, :class => "contact_delete_link" %>
+</p>

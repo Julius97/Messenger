@@ -3,12 +3,15 @@
 	<%= link_to "Kontaktsuche", search_path %>
 </p>
 <p>
-	<% @contacts.each do |contact| %>
-		<% if contact.user_one.id != @current_user.id %>
-			<%= link_to contact.user_one.nick_name, contact_path(contact.id)  %>
-		<% else %>
-			<%= link_to contact.user_two.nick_name, contact_path(contact.id) %>
+	<ul id="my_contact_list">
+		<% @contacts.each do |contact| %>
+			<li>
+				<% if contact.user_one.id != @current_user.id %>
+					<%= link_to contact.user_one.nick_name, contact_path(contact.id)  %>
+				<% else %>
+					<%= link_to contact.user_two.nick_name, contact_path(contact.id) %>
+				<% end %>
+			</li>
 		<% end %>
-		<br />
-	<% end %>
+	</ul>
 </p>

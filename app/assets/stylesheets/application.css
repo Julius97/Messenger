@@ -266,3 +266,20 @@ input[type="submit"]:hover{
 #new_message_form_wrapper input:hover{
 	background: rgba(32,124,229,1);
 }
+#my_contact_list{
+	padding: 0;
+	margin: 0;
+}
+#my_contact_list li{
+	border-bottom: 1px solid #cdc9c9;
+}
+#my_contact_list li:first-child{
+	border-top: 1px solid #cdc9c9;
+}
+#my_contact_list li:hover{
+	background: #cdc9c9;
+}
+#my_contact_list li a{
+	display: block;
+	padding: 10px 10px;
+}

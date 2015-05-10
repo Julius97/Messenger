@@ -50,4 +50,15 @@ class ContactController < ApplicationController
 		redirect_to contact_index_path
 	end
 
+	def destroy
+		if params[:id]
+			if Contact.find_by_id params[:id]
+				if Contact.find_by_id(params[:id]).user_one_id == @current_user.id || Contact.find_by_id(params[:id]).user_two_id
+					Contact.find_by_id(params[:id]).destroy
+				end
+			end
+		end
+		redirect_to contact_index_path
+	end
+
 end
